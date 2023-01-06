@@ -1,14 +1,17 @@
 import { PropTypes } from 'prop-types';
 
 import { ContactsItem, Input } from './ContactList.styled';
-import { useGetContactsQuery } from 'redux/contactsApi';
-// import { useDeleteContactMutation } from 'redux/contactsApi';
+// // import { useGetContactsQuery } from 'redux/contactsApi';
+// // import { useDeleteContactMutation } from 'redux/contactsApi';
 import { useSelector, useDispatch } from 'react-redux';
-import { filterContacts } from 'redux/filterSlice';
+
+import { filterContacts } from 'redux/filter/filterSlice';
+
 import { ButtonDelete } from 'components/ButtonDelete/ButtonDelete';
 
 export const ContactList = () => {
-  const { data } = useGetContactsQuery();
+  // const { data } = useGetContactsQuery();
+  const { data } = useSelector(state => state.contacts.items);
   // console.log('data', data);
   // console.log('error', error);
   // console.log('isLoading', isLoading);
@@ -46,15 +49,6 @@ export const ContactList = () => {
               {data.name}: {data.number}
             </span>
             <ButtonDelete id={data.id} />
-            {/* <ButtonDelete
-              type="button"
-              name="Delete"
-              id={data.id}
-              onClick={() => deleteContact(data.id)}
-              disabled={isLoading}
-            >
-              {isLoading ? 'Deleting...' : 'Delete'}
-            </ButtonDelete> */}
           </li>
         ))}
       </ul>

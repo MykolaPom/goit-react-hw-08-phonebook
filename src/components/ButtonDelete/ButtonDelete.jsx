@@ -1,9 +1,15 @@
-import { useDeleteContactMutation } from 'redux/contactsApi';
+// import { useDeleteContactMutation } from 'redux/contactsApi';
+
 import PropTypes from 'prop-types';
+import { deleteContact } from 'redux/tasks/operations';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ButtonDeleteStyled } from './ButtonDelete.styled';
 
 export const ButtonDelete = ({ id }) => {
-  const [deleteContact, { isLoading }] = useDeleteContactMutation();
+  const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.contacts.isLoading);
+  // const [deleteContact, { isLoading }] = useDeleteContactMutation();
   // console.log(isLoading);
 
   return (
@@ -11,7 +17,7 @@ export const ButtonDelete = ({ id }) => {
       type="button"
       name="Delete"
       id={id}
-      onClick={() => deleteContact(id)}
+      onClick={() => dispatch(deleteContact(id))}
       disabled={isLoading}
     >
       {isLoading ? 'Deleting...' : 'Delete'}

@@ -1,5 +1,8 @@
+// import { useEffect } from 'react';
 import { useState } from 'react';
-import { useGetContactsQuery, useAddContactMutation } from 'redux/contactsApi';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact } from 'redux/tasks/operations';
+
 import toast, { Toaster } from 'react-hot-toast';
 
 import { Form, Input, Paragraph, ButtonSubmit } from './ContactForm.styled';
@@ -8,10 +11,14 @@ export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const { data: contacts } = useGetContactsQuery();
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts.items);
+  const isLoading = useSelector(state => state.contacts.isLoading);
+
+  // const { data: contacts } = useGetContactsQuery();
   // consoile.log({ data: contacts });
 
-  const [addContact] = useAddContactMutation();
+  // const [addContact] = useAddContactMutation();
   // console.log(result); // повертає статус мутації
 
   const handleChange = e => {
@@ -38,7 +45,7 @@ export const ContactForm = () => {
       return;
     }
     try {
-      await addContact(data);
+      dispatch(addContact(data));
       toast.success('Contact has been added successfully');
     } catch (error) {
     }
@@ -78,7 +85,7 @@ export const ContactForm = () => {
           value={number}
         />
       </label>
-      <ButtonSubmit type="submit">Add contact</ButtonSubmit>
+      <ButtonSubmit type="submit" disabled={isLoading}>Add contact</ButtonSubmit>
       <Toaster position="top-right" />
     </Form>
   );
