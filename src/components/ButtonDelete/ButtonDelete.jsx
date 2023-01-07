@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
-import { deleteContact } from 'redux/contacts/operations';
+import { deleteContact } from 'redux/contacts/contactOperations';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { ButtonDeleteStyled } from './ButtonDelete.styled';
-import { selectLoading } from 'redux/contacts/contactSelectors';
+import { selectLoading } from 'redux/contacts/contactSelectors'; 
 
 export const ButtonDelete = ({ id }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
-
+  console.log(isLoading)
 
   return (
     <ButtonDeleteStyled
@@ -18,7 +18,7 @@ export const ButtonDelete = ({ id }) => {
       onClick={() => dispatch(deleteContact(id))}
       disabled={isLoading}
     >
-      {isLoading ? 'Deleting...' : 'Delete'}
+      Delete
     </ButtonDeleteStyled>
   );
 };

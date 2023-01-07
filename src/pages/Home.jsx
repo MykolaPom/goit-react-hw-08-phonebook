@@ -4,10 +4,10 @@ export default function Home() {
   return (
     <HomeContainer>
       <HomeTitle>
-        Phonebook application welcome page{' '}
-        <span role="img" aria-label="Greeting icon">
+       Welcome to Phonebook application webpage
+        {/* <span role="img" aria-label="Greeting icon">
           💁‍♀️
-        </span>
+        </span> */}
       </HomeTitle>
     </HomeContainer>
   );

@@ -6,9 +6,10 @@ import { useSelector } from 'react-redux';
 
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
+import { InputFilter } from 'components/inputFilter/inputFilter';
 
 import { selectItems } from 'redux/contacts/contactSelectors';
-import { fetchContacts } from 'redux/contacts/operations';
+import { fetchContacts } from 'redux/contacts/contactOperations';
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
@@ -21,12 +22,15 @@ export default function ContactsPage() {
   return (
     <MainContainer title="Phonebook">
       <h1>Phonebook</h1>
-
       <ContactForm />
-
       <h2>Contacts</h2>
-      <div>{data && 'Phonebook is empty...'}</div>
-      <ContactList name="Contacts" />
+      <InputFilter />
+
+      {data.length > 0 ? (
+        <ContactList name="Contacts" />) : (
+        <p>Phonebook is empty</p>
+      )}
+
     </MainContainer>
   );
 }
