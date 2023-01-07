@@ -5,8 +5,13 @@ import { filterContacts } from 'redux/filter/filterSlice';
 
 export const InputFilter = () => {
   const dispatch = useDispatch();
+  const filter = useSelector(state => state.filter);
+  console.log(filter);
+  const normolizeFilter = filter.toLowerCase();
+  const visibleContacts = data.filter(contact =>
+    contact.name.toLowerCase().includes(normolizeFilter)
+  );
 
-  const filter = useSelector(selectFilter);
 
   const handleChange = e => {
     dispatch(filterContacts(e.currentTarget.value));
