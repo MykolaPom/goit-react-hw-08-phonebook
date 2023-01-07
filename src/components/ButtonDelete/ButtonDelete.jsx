@@ -1,16 +1,14 @@
-// import { useDeleteContactMutation } from 'redux/contactsApi';
-
 import PropTypes from 'prop-types';
 import { deleteContact } from 'redux/contacts/operations';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { ButtonDeleteStyled } from './ButtonDelete.styled';
+import { selectLoading } from 'redux/contacts/contactSelectors';
 
 export const ButtonDelete = ({ id }) => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(state => state.contacts.isLoading);
-  // const [deleteContact, { isLoading }] = useDeleteContactMutation();
-  // console.log(isLoading);
+  const isLoading = useSelector(selectLoading);
+
 
   return (
     <ButtonDeleteStyled

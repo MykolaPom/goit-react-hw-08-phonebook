@@ -31,18 +31,17 @@ const contactsSlice = createSlice({
       state.error = null;
       state.items = action.payload;
     },
-
-    // [addContact.fulfilled](state, action) {
-    //   state.isLoading = false;
-    //   state.error = null;
-    //   state.items.push(action.payload);
-    // },
-    //------------------//
     [addContact.fulfilled](state, action) {
-      state.items = [...state.items, action.payload];
       state.isLoading = false;
+      state.error = null;
+      state.items.push(action.payload);
     },
-    //------------------//
+    // //------------------//
+    // [addContact.fulfilled](state, action) {
+    //   state.items = [...state.items, action.payload];
+    //   state.isLoading = false;
+    // },
+    // //------------------//
     [deleteContact.pending](state) {
       state.isLoading = true;
     },

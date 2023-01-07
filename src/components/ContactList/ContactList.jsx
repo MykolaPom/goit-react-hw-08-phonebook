@@ -9,7 +9,9 @@ import { selectFilter } from "redux/filter/filterSelector";
 
 export const ContactList = () => {
   const data = useSelector(selectItems);
+  // console.log(data);
   const filter = useSelector(selectFilter);
+  // console.log(filter);
   const normolizeFilter = filter.toLowerCase();
   const visibleContacts = data.filter(contact =>
     contact.name.toLowerCase().includes(normolizeFilter)

@@ -21,10 +21,12 @@ export default function ContactsPage() {
   return (
     <MainContainer title="Phonebook">
       <h1>Phonebook</h1>
+
       <ContactForm />
+
       <h2>Contacts</h2>
       <div>{data && 'Phonebook is empty...'}</div>
-      {/* <ContactList name="Contacts" /> */}
+      <ContactList name="Contacts" />
     </MainContainer>
   );
 }
