@@ -24,7 +24,7 @@ export default function ContactsPage() {
       <ContactForm />
       <h2>Contacts</h2>
       <div>{data && 'Phonebook is empty...'}</div>
-      <ContactList name="Contacts" />
+      {/* <ContactList name="Contacts" /> */}
     </MainContainer>
   );
 }
