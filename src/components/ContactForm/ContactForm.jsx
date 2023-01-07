@@ -1,9 +1,11 @@
 // import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from 'redux/tasks/operations';
+import { addContact } from 'redux/contacts/operations';
 
 import toast, { Toaster } from 'react-hot-toast';
+import { selectItems } from 'redux/contacts/contactSelectors';
+import { selectLoading } from 'redux/contacts/contactSelectors';
 
 import { Form, Input, Paragraph, ButtonSubmit } from './ContactForm.styled';
 
@@ -12,14 +14,8 @@ export const ContactForm = () => {
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.items);
-  const isLoading = useSelector(state => state.contacts.isLoading);
-
-  // const { data: contacts } = useGetContactsQuery();
-  // consoile.log({ data: contacts });
-
-  // const [addContact] = useAddContactMutation();
-  // console.log(result); // повертає статус мутації
+  const contacts = useSelector(selectItems);
+  const isLoading = useSelector(selectLoading);
 
   const handleChange = e => {
     switch (e.currentTarget.name) {
@@ -39,19 +35,15 @@ export const ContactForm = () => {
     setNumber('');
   };
 
-  const formSubmitHandle = async data => {
+  const formSubmitHandle = data => {
     if (contacts.filter(contact => contact.name === data.name).length > 0) {
       toast.error(`${name} is already exists`);
       return;
     }
-    try {
-      dispatch(addContact(data));
-      toast.success('Contact has been added successfully');
-    } catch (error) {
-    }
+    dispatch(addContact(data));
   };
 
-  const clickOnBtnSubmit = async e => {
+  const clickOnBtnSubmit = e => {
     e.preventDefault();
     formSubmitHandle({ name, number });
     reset();
@@ -85,7 +77,9 @@ export const ContactForm = () => {
           value={number}
         />
       </label>
-      <ButtonSubmit type="submit" disabled={isLoading}>Add contact</ButtonSubmit>
+      <ButtonSubmit type="submit" disabled={isLoading}>
+        Add contact
+      </ButtonSubmit>
       <Toaster position="top-right" />
     </Form>
   );

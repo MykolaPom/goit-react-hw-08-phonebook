@@ -1,31 +1,32 @@
 import { MainContainer } from 'components/Main/Main';
 
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 
-import { fetchContacts } from 'redux/tasks/operations';
+import { selectItems } from 'redux/contacts/contactSelectors';
+import { fetchContacts } from 'redux/contacts/operations';
 
 export default function ContactsPage() {
-    const data = useSelector(state => state.contacts.items);
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const data = useSelector(selectItems);
 
-    useEffect(() => {
-      dispatch(fetchContacts());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
-    return (
-      <MainContainer title="Phonebook">
-        <h1>Phonebook</h1>
-        <ContactForm />
-        <h2>Contacts</h2>
+  return (
+    <MainContainer title="Phonebook">
+      <h1>Phonebook</h1>
+      <ContactForm />
+      <h2>Contacts</h2>
+      <div>{data && 'Phonebook is empty...'}</div>
 
-        {data.length > 0 ? (
-        <ContactList name="Contacts" />) : (
-        <p>Phonebook is empty</p>
-      )}
-      </MainContainer>
-    );
+      <ContactList name="Contacts" />
+
+    </MainContainer>
+  );
 }
-

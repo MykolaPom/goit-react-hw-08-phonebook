@@ -10,7 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { contactsReducer } from './tasks/slice';
+import { contactsReducer } from './contacts/contactsSlice';
 import { authReducer } from './auth/slice';
 
 const middleware = [
@@ -39,7 +39,6 @@ export const store = configureStore({
 
 export const persistor = persistStore(store);
 
-
 //------------------------------------------//
 // import { configureStore } from '@reduxjs/toolkit';
 // import { filterSlice } from './filter/filterSlice';
@@ -55,7 +54,6 @@ export const persistor = persistStore(store);
 // });
 
 //-----------------------------------------------------------//
-
 
 //------------------------myStore-----------------------//
 

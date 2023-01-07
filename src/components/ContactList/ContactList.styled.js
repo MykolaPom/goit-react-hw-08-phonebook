@@ -29,8 +29,3 @@ export const ContactsItem = styled.div`
 //   }
 // `;
 
-export const Input = styled.input`
-  width: 50%;
-  height: 30px;
-  font-size: 24px;
-`;

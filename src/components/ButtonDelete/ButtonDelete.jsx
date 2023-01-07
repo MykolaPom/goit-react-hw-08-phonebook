@@ -1,7 +1,7 @@
 // import { useDeleteContactMutation } from 'redux/contactsApi';
 
 import PropTypes from 'prop-types';
-import { deleteContact } from 'redux/tasks/operations';
+import { deleteContact } from 'redux/contacts/operations';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { ButtonDeleteStyled } from './ButtonDelete.styled';

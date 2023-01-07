@@ -1,47 +1,39 @@
 import { PropTypes } from 'prop-types';
 
-import { ContactsItem, Input } from './ContactList.styled';
-// // import { useGetContactsQuery } from 'redux/contactsApi';
-// // import { useDeleteContactMutation } from 'redux/contactsApi';
-import { useSelector, useDispatch } from 'react-redux';
+import { ContactsItem } from './ContactList.styled';
+import { useSelector } from 'react-redux';
+// import { useDispatch } from 'reacte-redux';
 
-import { filterContacts } from 'redux/filter/filterSlice';
+import { InputFilter } from 'components/inputFilter/inputFilter';
+import { selectItems } from 'redux/contacts/contactSelectors';
+import { selectFilter } from 'redux/filter/filterSelector';
 
 import { ButtonDelete } from 'components/ButtonDelete/ButtonDelete';
 
 export const ContactList = () => {
-  // const { data } = useGetContactsQuery();
-  const { data } = useSelector(state => state.contacts.items);
-  // console.log('data', data);
-  // console.log('error', error);
-  // console.log('isLoading', isLoading);
+  const data = useSelector(selectItems);
+  console.log('data', data);
 
-  const filter = useSelector(state => state.filter);
+  const filter = useSelector(selectFilter);
+  console.log('filter', filter);
+
   const normolizeFilter = filter.toLowerCase();
+  console.log('normolizeFilter', normolizeFilter);
+
   const visibleContacts = data.filter(contact =>
     contact.name.toLowerCase().includes(normolizeFilter)
   );
+  console.log('visibleContacts', visibleContacts);
 
-  // const [deleteContact, { isLoading }] = useDeleteContactMutation();
-  // console.log(isLoading);
-
-  const dispatch = useDispatch();
-  const handleChange = e => {
-    dispatch(filterContacts(e.currentTarget.value));
-  };
+  // const dispatch = useDispatch();
+  // const handleChange = e => {
+  //   dispatch(filterContacts(e.currentTarget.value));
+  // };
 
   return (
     <ContactsItem>
-      {/* <p>{name}</p> */}
-      <label title="Find contacts by name">
-        <Input
-          type="text"
-          name="filter"
-          placeholder="Find contact"
-          onChange={handleChange}
-          value={filter}
-        />
-      </label>
+      <InputFilter />
+
       <ul>
         {visibleContacts.map(data => (
           <li key={data.id}>
@@ -59,3 +51,18 @@ export const ContactList = () => {
 ContactList.propTypes = {
   name: PropTypes.string.isRequired,
 };
+
+// {
+//   /* <p>{name}</p> */
+// }
+// {
+//   /* <label title="Find contacts by name">
+//   <Input
+//     type="text"
+//     name="filter"
+//     placeholder="Find contact"
+//     onChange={handleChange}
+//     value={filter}
+//   />
+// </label> */
+// }
