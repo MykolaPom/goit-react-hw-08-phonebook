@@ -7,11 +7,6 @@ export const InputFilter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.filter);
   console.log(filter);
-  const normolizeFilter = filter.toLowerCase();
-  const visibleContacts = data.filter(contact =>
-    contact.name.toLowerCase().includes(normolizeFilter)
-  );
-
 
   const handleChange = e => {
     dispatch(filterContacts(e.currentTarget.value));
