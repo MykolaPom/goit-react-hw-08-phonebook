@@ -7,10 +7,11 @@ export const Form = styled.form`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const Input = styled.input`
-  width: 50%;
+  width: 100%;
   height: 30px;
   font-size: 24px;
 `;

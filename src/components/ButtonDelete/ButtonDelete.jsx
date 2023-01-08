@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { ButtonDeleteStyled } from './ButtonDelete.styled';
 import { selectLoading } from 'redux/contacts/contactSelectors'; 
 
+import {FaTrash} from "react-icons/fa"
+
 export const ButtonDelete = ({ id }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoading);
@@ -18,7 +20,7 @@ export const ButtonDelete = ({ id }) => {
       onClick={() => dispatch(deleteContact(id))}
       disabled={isLoading}
     >
-      Delete
+      <FaTrash />
     </ButtonDeleteStyled>
   );
 };

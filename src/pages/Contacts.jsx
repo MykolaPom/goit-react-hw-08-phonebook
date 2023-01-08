@@ -25,12 +25,12 @@ export default function ContactsPage() {
       <ContactForm />
       <h2>Contacts</h2>
       <InputFilter />
-
+      
       {data.length > 0 ? (
-        <ContactList name="Contacts" />) : (
+        <ContactList name="Contacts" />
+      ) : (
         <p>Phonebook is empty</p>
       )}
-
     </MainContainer>
   );
 }
